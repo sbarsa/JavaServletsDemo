@@ -1,6 +1,5 @@
 package com.sergiubarsa.myfancypdfinvoices.service;
 
-import com.sergiubarsa.myfancypdfinvoices.context.Application;
 import com.sergiubarsa.myfancypdfinvoices.model.Invoice;
 import com.sergiubarsa.myfancypdfinvoices.model.User;
 
@@ -10,10 +9,15 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public class InvoiceService {
 
+    private final UserService userService;
     private final List<Invoice> invoices = new CopyOnWriteArrayList<>();
 
+    public InvoiceService(UserService userService) {
+        this.userService = userService;
+    }
+
     public Invoice create(String userId, int amount) {
-        User user = Application.userService.findById(userId);
+        User user = userService.findById(userId);
         if (user == null) {
             throw new IllegalStateException();
         }
