@@ -1,7 +1,6 @@
 package com.sergiubarsa;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -10,7 +9,6 @@ import java.io.IOException;
 import java.util.List;
 
 public class MyFancyPdfInvoiceServlet extends HttpServlet {
-
 
     private final ObjectMapper objectMapper = new ObjectMapper();
     private final InvoiceService invoiceService = new InvoiceService();
@@ -41,20 +39,20 @@ public class MyFancyPdfInvoiceServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        if (req.getRequestURI().equalsIgnoreCase("/invoices")) {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        if (request.getRequestURI().equalsIgnoreCase("/invoices")) {
 
-            String userId = req.getParameter("user_id");
-            int amount = Integer.parseInt(req.getParameter("amount"));
+            String userId = request.getParameter("user_id");
+            int amount = Integer.parseInt(request.getParameter("amount"));
 
             Invoice invoice = invoiceService.create(userId, amount);
 
-            resp.setContentType("application/json; charset=UTF-8");
+            response.setContentType("application/json; charset=UTF-8");
 
             String json = new ObjectMapper().writeValueAsString(invoice);
-            resp.getWriter().print(json);
+            response.getWriter().print(json);
         } else {
-            resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
+            response.setStatus(HttpServletResponse.SC_NOT_FOUND);
 
         }
     }
