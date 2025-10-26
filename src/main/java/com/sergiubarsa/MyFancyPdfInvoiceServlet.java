@@ -10,8 +10,6 @@ import java.util.List;
 
 public class MyFancyPdfInvoiceServlet extends HttpServlet {
 
-    private final ObjectMapper objectMapper = new ObjectMapper();
-    private final InvoiceService invoiceService = new InvoiceService();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -31,9 +29,9 @@ public class MyFancyPdfInvoiceServlet extends HttpServlet {
         } else if (request.getRequestURI().equalsIgnoreCase("/invoices")) {
             response.setContentType("application/json; charset=UTF-8");
 
-            List<Invoice> allInvoices = invoiceService.findAll();
+            List<Invoice> allInvoices = Application.invoiceService.findAll();
 
-            response.getWriter().print(objectMapper.writeValueAsString(allInvoices));
+            response.getWriter().print(Application.objectMapper.writeValueAsString(allInvoices));
 
         }
     }
@@ -45,7 +43,7 @@ public class MyFancyPdfInvoiceServlet extends HttpServlet {
             String userId = request.getParameter("user_id");
             int amount = Integer.parseInt(request.getParameter("amount"));
 
-            Invoice invoice = invoiceService.create(userId, amount);
+            Invoice invoice = Application.invoiceService.create(userId, amount);
 
             response.setContentType("application/json; charset=UTF-8");
 
