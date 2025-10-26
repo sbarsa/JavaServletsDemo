@@ -1,5 +1,6 @@
-package com.sergiubarsa;
+package com.sergiubarsa.myfancypdfinvoices;
 
+import com.sergiubarsa.myfancypdfinvoices.web.MyFancyPdfInvoiceServlet;
 import org.apache.catalina.Context;
 import org.apache.catalina.LifecycleException;
 import org.apache.catalina.Wrapper;

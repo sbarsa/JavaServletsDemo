@@ -1,6 +1,8 @@
-package com.sergiubarsa;
+package com.sergiubarsa.myfancypdfinvoices.web;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sergiubarsa.myfancypdfinvoices.Application;
+import com.sergiubarsa.myfancypdfinvoices.model.Invoice;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

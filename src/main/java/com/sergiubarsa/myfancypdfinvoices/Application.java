@@ -1,6 +1,7 @@
-package com.sergiubarsa;
+package com.sergiubarsa.myfancypdfinvoices;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sergiubarsa.myfancypdfinvoices.service.InvoiceService;
 
 public class Application {
 

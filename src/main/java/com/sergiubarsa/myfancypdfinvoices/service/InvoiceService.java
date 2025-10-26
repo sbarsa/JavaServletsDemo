@@ -1,4 +1,6 @@
-package com.sergiubarsa;
+package com.sergiubarsa.myfancypdfinvoices.service;
+
+import com.sergiubarsa.myfancypdfinvoices.model.Invoice;
 
 import java.util.Collections;
 import java.util.List;
